@@ -1,5 +1,6 @@
 import Button from "./Button";
 import { useState } from "react";
+import Form from "./Form";
 
 const Praktikum = () => {
   const [tmp, setTmp] = useState(false);
@@ -12,7 +13,7 @@ const Praktikum = () => {
     {
       id: 2,
       title: "Unit Testing",
-      completed: false,
+      completed: true,
     },
     {
       id: 3,
@@ -42,18 +43,14 @@ const Praktikum = () => {
       <div className="container">
         {tasks.map((task, index) => {
           return (
-            <div className="row" key={index}>
-              <div className={`konten ${task.completed ? "completed" : ""}`}>
-                {task.title}
-              </div>
-              <div className="action">
-                <Button
-                  color={task.completed ? "red" : "green"}
-                  text={task.completed ? "Cancel" : "Selesai"}
-                  onClick={() => checkBool(task, tmp, setTmp)}
-                />
-              </div>
-            </div>
+            <Form
+              key={index}
+              title={task.title}
+              classBtn={`konten ${task.completed ? "completed" : ""}`}
+              onClick={() => checkBool(task, tmp, setTmp)}
+              textCompleted={task.completed ? "Cancel" : "Selesai"}
+              colorCompleted={task.completed ? "red" : "green"}
+            />
           );
         })}
       </div>
